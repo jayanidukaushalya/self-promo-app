@@ -2,6 +2,7 @@ package com.jayanidukaushalya.selfpromoapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Spinner
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
             onPreviewClicked()
         }
 
+        val spinnerValues: Array<String> = arrayOf("Android Developer", "Android Engineer")
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerValues)
+        binding.spJobTitle.adapter = spinnerAdapter
     }
 
     private fun onPreviewClicked() {
