@@ -1,5 +1,6 @@
 package com.jayanidukaushalya.selfpromoapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             // Toast.makeText(this, "Button click works in Kotlin!", Toast.LENGTH_SHORT).show()
             onPreviewClicked()
         }
+
     }
 
     private fun onPreviewClicked() {
@@ -41,6 +43,18 @@ class MainActivity : AppCompatActivity() {
         val isImmediateStart = binding.cbImmediateStart.isChecked
         val startDate = binding.startDate.text.toString()
 
-        Toast.makeText(this, "Contact Name: $contactName, Contact Number: $contactNumber, Display Name: $displayName, Is Junior: $isJunior, Job Title: $jobTitle, Is Immediate Start: $isImmediateStart, Start Date: $startDate", Toast.LENGTH_LONG).show()
+        // Toast.makeText(this, "Contact Name: $contactName, Contact Number: $contactNumber, Display Name: $displayName, Is Junior: $isJunior, Job Title: $jobTitle, Is Immediate Start: $isImmediateStart, Start Date: $startDate", Toast.LENGTH_LONG).show()
+
+        val previewIntent = Intent(this, PreviewActivity::class.java)
+
+        previewIntent.putExtra("contactName", contactName)
+        previewIntent.putExtra("contactNumber", contactNumber)
+        previewIntent.putExtra("displayName", displayName)
+        previewIntent.putExtra("isJunior", isJunior)
+        previewIntent.putExtra("jobTitle", jobTitle)
+        previewIntent.putExtra("isImmediateStart", isImmediateStart)
+        previewIntent.putExtra("startDate", startDate)
+
+        startActivity(previewIntent)
     }
 }
