@@ -39,26 +39,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onPreviewClicked() {
-        val contactName = binding.contactName.text.toString()
-        val contactNumber = binding.contactNumber.text.toString()
-        val displayName = binding.displayName.text.toString()
-        val isJunior = binding.cbIncludeJunior.isChecked
-        val jobTitle = binding.spJobTitle.selectedItem?.toString()
-        val isImmediateStart = binding.cbImmediateStart.isChecked
-        val startDate = binding.startDate.text.toString()
 
         // Toast.makeText(this, "Contact Name: $contactName, Contact Number: $contactNumber, Display Name: $displayName, Is Junior: $isJunior, Job Title: $jobTitle, Is Immediate Start: $isImmediateStart, Start Date: $startDate", Toast.LENGTH_LONG).show()
 
+        val message = Message(
+            binding.contactName.text.toString(),
+            binding.contactNumber.text.toString(),
+            binding.displayName.text.toString(),
+            binding.cbIncludeJunior.isChecked,
+            binding.spJobTitle.selectedItem?.toString(),
+            binding.cbImmediateStart.isChecked,
+            binding.startDate.text.toString()
+            )
+
         val previewIntent = Intent(this, PreviewActivity::class.java)
 
-        previewIntent.putExtra("contactName", contactName)
-        previewIntent.putExtra("contactNumber", contactNumber)
-        previewIntent.putExtra("displayName", displayName)
-        previewIntent.putExtra("isJunior", isJunior)
-        previewIntent.putExtra("jobTitle", jobTitle)
-        previewIntent.putExtra("isImmediateStart", isImmediateStart)
-        previewIntent.putExtra("startDate", startDate)
-
+        previewIntent.putExtra("message", message)
         startActivity(previewIntent)
     }
 }

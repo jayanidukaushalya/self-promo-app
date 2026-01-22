@@ -26,14 +26,20 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun getIntentData(): String {
-        val contactName = intent.getStringExtra("contactName")
-        val contactNumber = intent.getStringExtra("contactNumber")
-        val displayName = intent.getStringExtra("displayName")
-        val isJunior = intent.getBooleanExtra("isJunior", false)
-        val jobTitle = intent.getStringExtra("jobTitle")
-        val isImmediateStart = intent.getBooleanExtra("isImmediateStart", false)
-        val startDate = intent.getStringExtra("startDate")
+        val message = intent.getSerializableExtra("message", Message::class.java)
 
-        return "Contact Name: $contactName, Contact Number: $contactNumber, Display Name: $displayName, Is Junior: $isJunior, Job Title: $jobTitle, Is Immediate Start: $isImmediateStart, Start Date: $startDate"
+        return """
+            Hi ${message?.contactName},
+            
+            My name is ${message?.displayName} and I am ${message?.getFullDescription()}.
+            
+            I have a portfolio of apps to demonstrate my technical skills that I can show on request.
+            
+            I am able to start a new position ${message?.getAvailability()}.
+            
+            Please get in touch if you have any suitable roles for me.
+            
+            Thanks and best regards.
+        """.trimIndent()
     }
 }
